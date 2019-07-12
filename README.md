@@ -2,7 +2,7 @@ A self-project to practice and have a deeper understanding of cleaning excel dat
 
 **Result from analysis**
 
-==========Approve loan=========
+==========Approve loan========= <br />
 Average loan amount: 15,908.34097999633
 Mimimum loan amount: 0 --> Next minimum loan amount: 1,000
 Maximum loan amount: 40,000
@@ -21,7 +21,7 @@ Average employment length: 2.4721049733896128 years
 Minimum length of employment: 0 year
 Maximum length of employment: 9 years
 
-==========Reject loan=========
+==========Reject loan========= <br />
 Average reject loan amount: 12,515.383107916085
 Average reject employment length: 0.11361334536236832 years
 Average reject debt-to-income ratio: 1.1929799359893136
