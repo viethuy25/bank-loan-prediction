@@ -11,11 +11,11 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-loan_df = pd.read_csv('data/LoanStats_2018Q2.csv', skiprows=1)
+loan_df = pd.read_csv('data/LoanStats_2018Q2.csv', skiprows=1, skipfooter = 2)
 # Normalize data
 loan_df = loan_df.fillna(0)
 
-rj_loan_df = pd.read_csv('data/RejectStats_2018Q2.csv', skiprows=1)
+rj_loan_df = pd.read_csv('data/RejectStats_2018Q2.csv', skiprows=1, skipfooter = 2)
 #Normalize data
 rj_loan_df = rj_loan_df.fillna(0)
 
@@ -64,4 +64,13 @@ avg_rj_emp_length_amt = rj_loan_df.loc[:, "Employment Length"].apply(lambda x: i
 print("Average reject employment length:", avg_rj_emp_length_amt, "years")
 
 avg_rj_debt_inc_ratio = rj_loan_df.loc[:, "debt-to-inc ratio"].mean()
-print("Average reject debt-to-income ratio:", avg_debt_inc_ratio)
+print("Average reject debt-to-income ratio:", avg_rj_debt_inc_ratio)
+
+
+# A surface look of data
+print ("==========Approve loan data=========")
+min_len_emp = loan_df.sort_values('emp_length')
+min_loan_amt = loan_df.sort_values('loan_amnt')
+
+loan_df['dti'] = loan_df.apply(lambda row: float(row[1])/float(row[12]) if row[12] > 0 else 0, axis = 1)
+print (loan_df.sort_values('dti')['dti'])
