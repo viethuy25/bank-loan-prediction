@@ -10,6 +10,8 @@ import pandas as pd
 import numpy as np
 
 import matplotlib.pyplot as plt
+import sklearn
+from sklearn.linear_model import LogisticRegression
 
 loan_df = pd.read_csv('data/LoanStats_2018Q2.csv', skiprows=1, skipfooter = 2)
 # Normalize data
@@ -73,4 +75,18 @@ min_len_emp = loan_df.sort_values('emp_length')
 min_loan_amt = loan_df.sort_values('loan_amnt')
 
 loan_df['dti'] = loan_df.apply(lambda row: float(row[1])/float(row[12]) if row[12] > 0 else 0, axis = 1)
-print (loan_df.sort_values('dti')['dti'])
+min_debt_to_income_ratio = loan_df.sort_values('dti')
+
+#Logistic regression model
+lite_loan_df = loan_df[['loan_amnt','emp_length','dti']]
+lite_rj_loan_df = rj_loan_df[['Amount Requested', 'Employment Length', 'debt-to-inc ratio', ]]
+
+lite_loan_df['loan_amnt'] = lite_loan_df['loan_amnt'].astype(int)
+lite_loan_df['dti'] = lite_loan_df['dti'].map('{:,.4f}'.format)
+
+Y = lite_rj_loan_df.head(1)
+print (lite_loan_df)
+print(Y)
+
+logreg = LogisticRegression(C=1e5, solver='lbfgs', multi_class='multinomial')
+logreg.fit(lite_loan_df, Y)
