@@ -1,5 +1,11 @@
 A self-project to practice and have a deeper understanding of cleaning excel data source and analysis data.
 
+**This dataset belongs to 2018 quater 2, obtaining from online**
+
+Based on the following numbers abstraact from the dataset, it can be seen that the main there are several main differences between the two sides:
+  _ Accepted loanees usually have higher income and stable jobs than rejected ones.
+  _ Loan amount does not varies between both sides, hence jobs stability and income are the two main factors.
+
 **Result from analysis**
 
 ==========Approve loan========= <br />
