@@ -23,6 +23,7 @@ rj_loan_df = rj_loan_df.fillna(0)
 
 loan_df = loan_df.drop(columns = "term")
 
+print ("\n")
 print ("==========Approve loan=========")
 
 avg_loan_amt = loan_df.loc[:, "loan_amnt"].mean()
@@ -48,7 +49,10 @@ print("Average employment length:", avg_emp_length_amt, "years")
 avg_debt_inc_ratio = avg_loan_amt/avg_annual_inc_amt
 print("Average debt-to-income ratio:", avg_debt_inc_ratio)
 
+loan_approval = len (loan_df)
+print ("Approved loans:",loan_approval)
 
+print ("\n")
 # Do the same manupilation for reject
 print ("==========Reject loan=========")
 avg_rj_loan_amt = rj_loan_df.loc[:, "Amount Requested"].mean()
@@ -68,25 +72,58 @@ print("Average reject employment length:", avg_rj_emp_length_amt, "years")
 avg_rj_debt_inc_ratio = rj_loan_df.loc[:, "debt-to-inc ratio"].mean()
 print("Average reject debt-to-income ratio:", avg_rj_debt_inc_ratio)
 
+loan_denied = len (rj_loan_df)
+print ("Denied loans:",loan_denied)
 
-# A surface look of data
-print ("==========Approve loan data=========")
-min_len_emp = loan_df.sort_values('emp_length')
-min_loan_amt = loan_df.sort_values('loan_amnt')
+print ("\n")
+#Re-engineer ranking loanee
+over_view_df = loan_df.groupby("grade").id.nunique()
+print ("Approved loanee")
+print (over_view_df)
 
-loan_df['dti'] = loan_df.apply(lambda row: float(row[1])/float(row[12]) if row[12] > 0 else 0, axis = 1)
-min_debt_to_income_ratio = loan_df.sort_values('dti')
+#Draw overview, as seen the majority of loanee are A,B and C with over 70% loans in estimation
+over_view_df.plot.bar()
 
-#Logistic regression model
-lite_loan_df = loan_df[['loan_amnt','emp_length','dti']]
-lite_rj_loan_df = rj_loan_df[['Amount Requested', 'Employment Length', 'debt-to-inc ratio', ]]
+#Grade A group
+A_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+#A_loan_df = pd.DataFrame({'Occupation':A_loan_series.index, 'mean':A_loan_series.values})
+print(A_loan_series)
 
-lite_loan_df['loan_amnt'] = lite_loan_df['loan_amnt'].astype(int)
-lite_loan_df['dti'] = lite_loan_df['dti'].map('{:,.4f}'.format)
+print ("\n")
+#Grade B group
+B_loan_series = loan_df.loc[loan_df["grade"] == 'B'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+#B_loan_df = pd.DataFrame({'Occupation':B_loan_series.index, 'count':B_loan_series.values})
+print(B_loan_series)
 
-Y = lite_rj_loan_df.head(1)
-print (lite_loan_df)
-print(Y)
-
-logreg = LogisticRegression(C=1e5, solver='lbfgs', multi_class='multinomial')
-logreg.fit(lite_loan_df, Y)
+print ("\n")
+#Grade C group
+C_loan_series = loan_df.loc[loan_df["grade"] == 'C'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+#C_loan_df = pd.DataFrame({'Occupation':C_loan_series.index, 'count':C_loan_series.values})
+#print(C_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
+print (C_loan_series)
+print ("\n")
+#Grade D group
+D_loan_series = loan_df.loc[loan_df["grade"] == 'D'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+#D_loan_df = pd.DataFrame({'Occupation':D_loan_series.index, 'count':D_loan_series.values})
+#print(D_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
+print(D_loan_series)
+print ("\n")
+#Grade E group
+E_loan_series = loan_df.loc[loan_df["grade"] == 'E'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+#E_loan_df = pd.DataFrame({'Occupation':E_loan_series.index, 'count':E_loan_series.values})
+#print(E_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
+print(E_loan_series)
+print ("\n")
+#Grade F group
+F_loan_series = loan_df.loc[loan_df["grade"] == 'F'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+#F_loan_df = pd.DataFrame({'Occupation':F_loan_series.index, 'count':F_loan_series.values})
+#print(F_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
+print(F_loan_series)
+print ("\n")
+#Grade G group
+G_loan_series = loan_df.loc[loan_df["grade"] == 'G'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+#G_loan_df = pd.DataFrame({'Occupation':G_loan_series.index, 'count':G_loan_series.values})
+#print(G_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
+print(G_loan_series)
+print ("\n")
+#Prediction analysis

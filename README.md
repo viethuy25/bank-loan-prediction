@@ -3,25 +3,20 @@ A self-project to practice and have a deeper understanding of cleaning excel dat
 **Result from analysis**
 
 ==========Approve loan========= <br />
-Average loan amount: 15,908.34097999633 <br />
-Mimimum loan amount: 0 --> Next minimum loan amount: 1,000 <br />
-Maximum loan amount: 40,000 <br /><br />
+Top jobs to qualify for a loan, regardless of emp_length:
+1)				Teacher
+2) 				Manager
+3)				Owner
+4)				Driver
+5)				Register Nurse
+6) 				RN
 
-Top 5 purpose for loan: debt_consolidation, credit_card, other and home_improvement <br /><br />
+Interestingly, after check mean emp_length, it does not seem to have heavy impact on ranking as:
+_ Highest mean emp_length belongs to rank B,D and E for top 6 jobs
 
-Average length: 43.20499174160396 months <br /><br />
-
-Average annual income amount: 78,662.72607435608 <br />
-Minimum annual income amount: 0 <br />
-Maximum annual income amount: 9,930,475 <br /><br />
-
-Average debt-to-income ratio: 0.20223480387596718 <br />
-Minimum debt-to-income ratio: 0 <br />
-Maximum debt-to-income ratio: 25,000 <br /><br />
-
-Average employment length: 2.4721049733896128 years <br />
-Minimum length of employment: 0 year <br />
-Maximum length of employment: 9 years <br /><br />
+Instead, annual_inc is what seems to affect ranking the most:
+_ Except for rank D and E with some of the times peak, most jobs annual income will affect their ranking from A to F in descending order
+_ For jobs with average salary below 70k likes Teacher, there seems to have no peak at D and E likes high income jobs like Owner or Register Nurse
 
 ==========Reject loan========= <br />
 Average reject loan amount: 12,515.383107916085 <br />
