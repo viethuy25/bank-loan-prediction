@@ -85,45 +85,59 @@ print (over_view_df)
 over_view_df.plot.bar()
 
 #Grade A group
-A_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+A_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["loan_amnt"].mean()/loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
 #A_loan_df = pd.DataFrame({'Occupation':A_loan_series.index, 'mean':A_loan_series.values})
 print(A_loan_series)
 
 print ("\n")
 #Grade B group
-B_loan_series = loan_df.loc[loan_df["grade"] == 'B'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+B_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["loan_amnt"].mean()/loan_df.loc[loan_df["grade"] == 'B'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
 #B_loan_df = pd.DataFrame({'Occupation':B_loan_series.index, 'count':B_loan_series.values})
 print(B_loan_series)
 
 print ("\n")
 #Grade C group
-C_loan_series = loan_df.loc[loan_df["grade"] == 'C'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+C_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["loan_amnt"].mean()/loan_df.loc[loan_df["grade"] == 'C'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
 #C_loan_df = pd.DataFrame({'Occupation':C_loan_series.index, 'count':C_loan_series.values})
 #print(C_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
 print (C_loan_series)
 print ("\n")
 #Grade D group
-D_loan_series = loan_df.loc[loan_df["grade"] == 'D'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+D_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["loan_amnt"].mean()/loan_df.loc[loan_df["grade"] == 'D'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
 #D_loan_df = pd.DataFrame({'Occupation':D_loan_series.index, 'count':D_loan_series.values})
 #print(D_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
 print(D_loan_series)
 print ("\n")
 #Grade E group
-E_loan_series = loan_df.loc[loan_df["grade"] == 'E'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+E_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["loan_amnt"].mean()/loan_df.loc[loan_df["grade"] == 'E'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
 #E_loan_df = pd.DataFrame({'Occupation':E_loan_series.index, 'count':E_loan_series.values})
 #print(E_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
 print(E_loan_series)
 print ("\n")
 #Grade F group
-F_loan_series = loan_df.loc[loan_df["grade"] == 'F'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+F_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["loan_amnt"].mean()/loan_df.loc[loan_df["grade"] == 'F'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
 #F_loan_df = pd.DataFrame({'Occupation':F_loan_series.index, 'count':F_loan_series.values})
 #print(F_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
 print(F_loan_series)
 print ("\n")
 #Grade G group
-G_loan_series = loan_df.loc[loan_df["grade"] == 'G'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
+G_loan_series = loan_df.loc[loan_df["grade"] == 'A'].loc[loan_df["emp_title"] == "Manager"]["loan_amnt"].mean()/loan_df.loc[loan_df["grade"] == 'G'].loc[loan_df["emp_title"] == "Manager"]["annual_inc"].mean()
 #G_loan_df = pd.DataFrame({'Occupation':G_loan_series.index, 'count':G_loan_series.values})
 #print(G_loan_df.sort_values(by='count',ascending = False).head(10)['Occupation'])
 print(G_loan_series)
 print ("\n")
+
+
 #Prediction analysis
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+X = loan_df[['annual_inc', 'loan_amnt', 'emp_length']]
+print (X.dtypes)
+y = loan_df['grade']
+X_train, X_test, y_train, y_test = train_test_split (X,y, test_size = 0.2)
+
+classifier = DecisionTreeClassifier()
+classifier.fit(X_train, y_train)
+
+y_pred = classifier.predict(X_test)

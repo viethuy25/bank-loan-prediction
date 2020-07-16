@@ -29,3 +29,8 @@ Average reject loan amount: 12,515.383107916085 <br />
 Average reject employment length: 0.11361334536236832 years <br />
 Average reject debt-to-income ratio: 1.1929799359893136 <br /><br />
 
+
+_ For people with the same job title, their loan classification does not correlate with annual income as grade C has the highest annual income while grade E has the lowest one.
+_ The same is for debt-to-income ratio. Hence, the grade is not based on one category only.
+
+
