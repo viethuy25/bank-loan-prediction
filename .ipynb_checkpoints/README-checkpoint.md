@@ -33,4 +33,6 @@ Average reject debt-to-income ratio: 1.1929799359893136 <br /><br />
 _ For people with the same job title, their loan classification does not correlate with annual income as grade C has the highest annual income while grade E has the lowest one.
 _ The same is for debt-to-income ratio. Hence, the grade is not based on one category only.
 
+---------------------------------------------------------------------------------------------
+_ There are 2 loan with no interest rate (init_rate) in approved loan. With further look, it seems to be empty rows, which is likely due to data entry mistakes.
 
