@@ -5,6 +5,7 @@ A self-project to practice and have a deeper understanding of cleaning excel dat
 Based on the following numbers abstraact from the dataset, it can be seen that the main there are several main differences between the two sides:
   _ Accepted loanees usually have higher income and stable jobs than rejected ones.
   _ Loan amount does not varies between both sides, hence jobs stability and income are the two main factors.
+  _ Cannot dropna from the beginnning as there are many records with missing some features. Hence, we will fillna() with previous record.
 
 **Result from analysis**
 
@@ -35,4 +36,9 @@ _ The same is for debt-to-income ratio. Hence, the grade is not based on one cat
 
 ---------------------------------------------------------------------------------------------
 _ There are 2 loan with no interest rate (init_rate) in approved loan. With further look, it seems to be empty rows, which is likely due to data entry mistakes.
+<br />
+
+## Result 
+_ The Naive Bayes approach based on 'loan_amnt','grade','home_ownership', 'annual_inc','verification_status' featuers has an accuracy score of only 0.2956199914357374, which is not very accurate.
+_ The K-means clustering perform even worses with an accuracy score of only 0.17505008640861333.
 

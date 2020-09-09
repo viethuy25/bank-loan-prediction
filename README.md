@@ -36,6 +36,10 @@ _ The same is for debt-to-income ratio. Hence, the grade is not based on one cat
 
 ---------------------------------------------------------------------------------------------
 _ There are 2 loan with no interest rate (init_rate) in approved loan. With further look, it seems to be empty rows, which is likely due to data entry mistakes.
+<br />
+
+## Result 
 _ The Naive Bayes approach based on 'loan_amnt','grade','home_ownership', 'annual_inc','verification_status' featuers has an accuracy score of only 0.2956199914357374, which is not very accurate.
+_ The K-means clustering perform even worses with an accuracy score of only 0.20119442702677903 on the same features.
 _ 
 
