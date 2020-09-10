@@ -36,9 +36,15 @@ _ The same is for debt-to-income ratio. Hence, the grade is not based on one cat
 
 ---------------------------------------------------------------------------------------------
 _ There are 2 loan with no interest rate (init_rate) in approved loan. With further look, it seems to be empty rows, which is likely due to data entry mistakes.
+
+_ With further inspection, there are more than 40 thousands unique emp_title with some unreadable characters. Hence, to enhance the model, we will only focus on the top 10 most popular jobs.
 <br />
 
 ## Result 
 _ The Naive Bayes approach based on 'loan_amnt','grade','home_ownership', 'annual_inc','verification_status' featuers has an accuracy score of only 0.2956199914357374, which is not very accurate.
-_ The K-means clustering perform even worses with an accuracy score of only 0.17505008640861333.
+_ The K-means clustering perform even worses with an accuracy score of only 0.20119442702677903 on the same features.
+<br />
+
+_ When we take into account of emp_title (top 10 jobs), suprisingly the result are mixed.
+_ Naive Bayes accuracy score goes down a little to 0.2889403590040533 while K-means clustering's one incline to 0.21360839667028592
 
